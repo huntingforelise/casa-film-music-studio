@@ -1,15 +1,17 @@
-import { header } from './documents/header'
-import { footer } from './documents/footer'
-import { homepage } from './documents/homepage'
-import { page } from './documents/page'
+import {textImageSection} from './sections/textImageSection'
+import {header} from './documents/header'
+import {footer} from './documents/footer'
+import {homepage} from './documents/homepage'
+import {page} from './documents/page'
 
-import { navigationLink } from './objects/navigationLink'
+import {navigationLink} from './objects/navigationLink'
 
-import { heroSection } from './objects/sections/heroSection'
-import { textSection } from './objects/sections/textSection'
-import { imageSection } from './objects/sections/imageSection'
-import { ctaSection } from './objects/sections/ctaSection'
-import { splitHeroSection } from './objects/sections/splitHeroSection'
+import {heroSection} from './sections/heroSection'
+import {textSection} from './sections/textSection'
+import {imageSection} from './sections/imageSection'
+import {ctaSection} from './sections/ctaSection'
+import {splitHeroSection} from './sections/splitHeroSection'
+import {blockContent} from './objects/blockContent'
 
 export const schemaTypes = [
   header,
@@ -24,4 +26,7 @@ export const schemaTypes = [
   imageSection,
   ctaSection,
   splitHeroSection,
+  textImageSection,
+
+  blockContent,
 ]
