@@ -26,8 +26,8 @@ export const footer = defineType({
       validation: (Rule) => Rule.required().email().error('Please enter a valid email address'),
     }),
     defineField({
-      name: 'legalLinks',
-      title: 'Legal Links',
+      name: 'otherLinks',
+      title: 'Other Links',
       type: 'array',
       of: [{type: 'navigationLink'}],
       validation: (Rule) => Rule.required().min(1),
