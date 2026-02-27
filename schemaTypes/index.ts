@@ -5,6 +5,7 @@ import {homepage} from './documents/homepage'
 import {page} from './documents/page'
 
 import {navigationLink} from './objects/navigationLink'
+import {navigationSubLink} from './objects/navigationSubLink'
 import {socialLink} from './objects/socialLink'
 
 import {heroSection} from './sections/heroSection'
@@ -21,6 +22,7 @@ export const schemaTypes = [
   page,
 
   navigationLink,
+  navigationSubLink,
   socialLink,
 
   heroSection,

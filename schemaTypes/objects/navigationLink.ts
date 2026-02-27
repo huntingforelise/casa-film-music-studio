@@ -7,5 +7,11 @@ export const navigationLink = defineType({
   fields: [
     defineField({ name: 'label', type: 'string', title: 'Label' }),
     defineField({ name: 'url', type: 'string', title: 'URL or slug' }),
+    defineField({
+      name: 'subLinks',
+      title: 'Sub links',
+      type: 'array',
+      of: [{ type: 'navigationSubLink' }],
+    }),
   ],
 })
