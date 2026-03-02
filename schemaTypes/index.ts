@@ -1,4 +1,3 @@
-import {textImageSection} from './sections/textImageSection'
 import {header} from './documents/header'
 import {footer} from './documents/footer'
 import {homepage} from './documents/homepage'
@@ -30,7 +29,6 @@ export const schemaTypes = [
   imageSection,
   ctaSection,
   splitHeroSection,
-  textImageSection,
 
   blockContent,
 ]

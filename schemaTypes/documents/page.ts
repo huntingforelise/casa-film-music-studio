@@ -41,7 +41,6 @@ export const page = defineType({
         {type: 'textSection'},
         {type: 'imageSection'},
         {type: 'ctaSection'},
-        {type: 'textImageSection'},
       ],
     }),
   ],
