@@ -34,27 +34,13 @@ export const page = defineType({
     }),
 
     defineField({
-      name: 'videoUrl',
-      title: 'Video URL',
-      type: 'url',
-      description: 'Optional embedded video URL (for example Vimeo player URL).',
-      validation: (Rule) => Rule.uri({allowRelative: false, scheme: ['http', 'https']}),
-    }),
-
-    defineField({
-      name: 'videoTitle',
-      title: 'Video Title',
-      type: 'string',
-      description: 'Used as the iframe title for accessibility.',
-    }),
-
-    defineField({
       name: 'sections',
       type: 'array',
       of: [
         {type: 'heroSection'},
         {type: 'textSection'},
-        {type: 'imageSection'},
+        {type: 'mediaGridSection'},
+        {type: 'mediaShowcaseSection'},
         {type: 'ctaSection'},
       ],
     }),
