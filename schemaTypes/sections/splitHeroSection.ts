@@ -12,13 +12,36 @@ export const splitHeroSection = defineType({
     }),
 
     defineField({
+      name: 'image',
+      title: 'Background image',
+      type: 'image',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+          validation: (Rule) => Rule.max(140),
+        }),
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: 'optionOne',
       title: 'Option One',
       type: 'object',
       fields: [
-        { name: 'title', type: 'string' },
-        { name: 'image', type: 'image' },
-        { name: 'link', type: 'string' },
+        defineField({
+          name: 'title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'link',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
       ],
     }),
 
@@ -27,10 +50,32 @@ export const splitHeroSection = defineType({
       title: 'Option Two',
       type: 'object',
       fields: [
-        { name: 'title', type: 'string' },
-        { name: 'image', type: 'image' },
-        { name: 'link', type: 'string' },
+        defineField({
+          name: 'title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'link',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'question',
+      media: 'image',
+      optionOne: 'optionOne.title',
+      optionTwo: 'optionTwo.title',
+    },
+    prepare({title, media, optionOne, optionTwo}) {
+      return {
+        title: title || 'Split Hero',
+        subtitle: `${optionOne || 'Left'} / ${optionTwo || 'Right'}`,
+        media,
+      }
+    },
+  },
 })
