@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import {defineType, defineField} from 'sanity'
 
 export const splitHeroSection = defineType({
   name: 'splitHeroSection',
@@ -42,6 +42,11 @@ export const splitHeroSection = defineType({
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
+        defineField({
+          name: 'subtitle',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
       ],
     }),
 
@@ -57,6 +62,11 @@ export const splitHeroSection = defineType({
         }),
         defineField({
           name: 'link',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'subtitle',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
