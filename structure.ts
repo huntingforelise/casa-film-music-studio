@@ -33,6 +33,15 @@ export const structure: StructureResolver = (S) =>
             .documentId('footer')
         ),
 
+      S.listItem()
+        .title('Booking Settings')
+        .id('bookingSettings')
+        .child(
+          S.document()
+            .schemaType('bookingSettings')
+            .documentId('bookingSettings')
+        ),
+
       // OTHER DOCUMENTS (normal collection)
       ...S.documentTypeListItems().filter(
         (listItem) => !singletonTypes.has(listItem.getId()!)

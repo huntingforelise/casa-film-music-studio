@@ -2,6 +2,7 @@ import {header} from './documents/header'
 import {footer} from './documents/footer'
 import {homepage} from './documents/homepage'
 import {page} from './documents/page'
+import {bookingSettings} from './documents/bookingSettings'
 
 import {navigationLink} from './objects/navigationLink'
 import {navigationSubLink} from './objects/navigationSubLink'
@@ -23,6 +24,7 @@ export const schemaTypes = [
   footer,
   homepage,
   page,
+  bookingSettings,
 
   navigationLink,
   navigationSubLink,
