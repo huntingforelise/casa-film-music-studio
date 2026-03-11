@@ -34,6 +34,7 @@ export const schemaTypes = [
 
   heroSection,
   textSection,
+  // TODO check if needed
   imageSection,
   ctaSection,
   splitHeroSection,

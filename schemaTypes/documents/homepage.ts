@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import {defineType, defineField} from 'sanity'
 
 export const homepage = defineType({
   name: 'homepage',
@@ -10,12 +10,11 @@ export const homepage = defineType({
       title: 'Sections',
       type: 'array',
       of: [
-        { type: 'splitHeroSection' },
-        { type: 'heroSection' },
-        { type: 'textSection' },
-        { type: 'mediaGridSection' },
-        { type: 'mediaShowcaseSection' },
-        { type: 'ctaSection' },
+        {type: 'splitHeroSection'},
+        {type: 'textSection'},
+        {type: 'mediaGridSection'},
+        {type: 'mediaShowcaseSection'},
+        {type: 'ctaSection'},
       ],
     }),
   ],
