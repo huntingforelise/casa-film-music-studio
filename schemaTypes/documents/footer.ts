@@ -34,6 +34,12 @@ export const footer = defineType({
       description: 'Add links such as /legal and /faq.',
     }),
     defineField({
+      name: 'developerCreditText',
+      title: 'Developer Credit Text',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'developerCreditLabel',
       title: 'Developer Credit Label',
       type: 'string',
@@ -45,6 +51,20 @@ export const footer = defineType({
       title: 'Developer Credit URL',
       type: 'url',
       validation: (Rule) => Rule.required().uri({scheme: ['http', 'https']}),
+    }),
+    defineField({
+      name: 'ctaHeading',
+      title: 'CTA Heading',
+      type: 'string',
+      validation: (Rule) => Rule.max(120),
+      initialValue: 'Ready to capture your moments?',
+    }),
+    defineField({
+      name: 'contactHeading',
+      title: 'Contact Heading',
+      type: 'string',
+      validation: (Rule) => Rule.max(120),
+      initialValue: 'Contact',
     }),
   ],
 })
