@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import {defineField, defineType} from 'sanity'
 
 export const imageSection = defineType({
   name: 'imageSection',
@@ -19,6 +19,5 @@ export const imageSection = defineType({
         }),
       ],
     }),
-    { name: 'caption', type: 'string' },
   ],
 })

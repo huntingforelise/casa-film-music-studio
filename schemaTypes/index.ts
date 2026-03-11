@@ -8,6 +8,7 @@ import {navigationLink} from './objects/navigationLink'
 import {navigationSubLink} from './objects/navigationSubLink'
 import {socialLink} from './objects/socialLink'
 import {photoItem} from './objects/photoItem'
+import {testimonialCard} from './objects/testimonialCard'
 import {videoItem} from './objects/videoItem'
 
 import {heroSection} from './sections/heroSection'
@@ -17,6 +18,7 @@ import {ctaSection} from './sections/ctaSection'
 import {splitHeroSection} from './sections/splitHeroSection'
 import {mediaGridSection} from './sections/mediaGridSection'
 import {mediaShowcaseSection} from './sections/mediaShowcaseSection'
+import {testimonialSection} from './sections/testimonialSection'
 import {blockContent} from './objects/blockContent'
 
 export const schemaTypes = [
@@ -31,6 +33,7 @@ export const schemaTypes = [
   socialLink,
   photoItem,
   videoItem,
+  testimonialCard,
 
   heroSection,
   textSection,
@@ -40,6 +43,7 @@ export const schemaTypes = [
   splitHeroSection,
   mediaGridSection,
   mediaShowcaseSection,
+  testimonialSection,
 
   blockContent,
 ]
