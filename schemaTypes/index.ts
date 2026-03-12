@@ -1,6 +1,7 @@
 import {header} from './documents/header'
 import {footer} from './documents/footer'
 import {homepage} from './documents/homepage'
+import {contactForm} from './documents/contactForm'
 import {page} from './documents/page'
 import {bookingSettings} from './documents/bookingSettings'
 
@@ -25,6 +26,7 @@ export const schemaTypes = [
   header,
   footer,
   homepage,
+  contactForm,
   page,
   bookingSettings,
 

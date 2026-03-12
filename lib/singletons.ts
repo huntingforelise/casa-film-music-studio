@@ -3,4 +3,5 @@ export const singletonTypes = new Set([
   'header',
   'footer',
   'bookingSettings',
+  'contactForm',
 ])

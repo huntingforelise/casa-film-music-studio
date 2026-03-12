@@ -246,7 +246,7 @@ export const bookingSettings = defineType({
 
     defineField({
       name: 'copy',
-      title: 'Copy overrides',
+      title: 'Copy text',
       type: 'object',
       fields: [
         defineField({
