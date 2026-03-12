@@ -39,6 +39,7 @@ export const page = defineType({
       of: [
         {type: 'heroSection'},
         {type: 'textSection'},
+        {type: 'mediaTextSection'},
         {type: 'mediaGridSection'},
         {type: 'mediaShowcaseSection'},
         {type: 'ctaSection'},

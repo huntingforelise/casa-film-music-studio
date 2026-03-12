@@ -14,6 +14,7 @@ import {videoItem} from './objects/videoItem'
 
 import {heroSection} from './sections/heroSection'
 import {textSection} from './sections/textSection'
+import {mediaTextSection} from './sections/mediaTextSection'
 import {imageSection} from './sections/imageSection'
 import {ctaSection} from './sections/ctaSection'
 import {splitHeroSection} from './sections/splitHeroSection'
@@ -39,6 +40,7 @@ export const schemaTypes = [
 
   heroSection,
   textSection,
+  mediaTextSection,
   // TODO check if needed
   imageSection,
   ctaSection,
