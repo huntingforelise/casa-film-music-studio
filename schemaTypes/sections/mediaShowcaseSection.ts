@@ -84,6 +84,8 @@ export const mediaShowcaseSection = defineType({
       const mediaType = (value as {mediaType?: string}).mediaType
       const featuredPhoto = (value as {featuredPhoto?: unknown}).featuredPhoto
       const featuredVideo = (value as {featuredVideo?: unknown}).featuredVideo
+      const supportingPhotos = (value as {photos?: unknown[]}).photos
+      const supportingVideos = (value as {videos?: unknown[]}).videos
 
       if (mediaType === 'photo' && !featuredPhoto) {
         return 'Select a featured photo when media type is photo.'
@@ -91,6 +93,14 @@ export const mediaShowcaseSection = defineType({
 
       if (mediaType === 'video' && !featuredVideo) {
         return 'Select a featured video when media type is video.'
+      }
+
+      if (mediaType === 'photo' && (!Array.isArray(supportingPhotos) || supportingPhotos.length < 1)) {
+        return 'Add at least 1 supporting photo when media type is photo.'
+      }
+
+      if (mediaType === 'video' && (!Array.isArray(supportingVideos) || supportingVideos.length < 1)) {
+        return 'Add at least 1 supporting video when media type is video.'
       }
 
       return true

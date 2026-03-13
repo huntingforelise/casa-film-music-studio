@@ -87,12 +87,12 @@ export const mediaGridSection = defineType({
       const photos = (value as {photos?: unknown[]}).photos
       const videos = (value as {videos?: unknown[]}).videos
 
-      if (mediaType === 'photo' && (!Array.isArray(photos) || photos.length < 1)) {
-        return 'Add at least 1 photo when media type is photo.'
+      if (mediaType === 'photo' && (!Array.isArray(photos) || photos.length < 2)) {
+        return 'Add at least 2 photos when media type is photo.'
       }
 
-      if (mediaType === 'video' && (!Array.isArray(videos) || videos.length < 1)) {
-        return 'Add at least 1 video when media type is video.'
+      if (mediaType === 'video' && (!Array.isArray(videos) || videos.length < 2)) {
+        return 'Add at least 2 videos when media type is video.'
       }
 
       return true
