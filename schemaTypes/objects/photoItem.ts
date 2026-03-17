@@ -20,21 +20,14 @@ export const photoItem = defineType({
         }),
       ],
     }),
-    defineField({
-      name: 'caption',
-      title: 'Caption',
-      type: 'string',
-    }),
   ],
   preview: {
     select: {
-      title: 'caption',
       media: 'image',
     },
-    prepare({title, media}) {
+    prepare({media}) {
       return {
-        title: title || 'Photo item',
-        subtitle: 'Photo',
+        title: 'Photo item',
         media,
       }
     },

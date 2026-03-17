@@ -18,8 +18,8 @@ import {mediaTextSection} from './sections/mediaTextSection'
 import {imageSection} from './sections/imageSection'
 import {ctaSection} from './sections/ctaSection'
 import {splitHeroSection} from './sections/splitHeroSection'
-import {mediaGridSection} from './sections/mediaGridSection'
-import {mediaShowcaseSection} from './sections/mediaShowcaseSection'
+import {mediaRowSection} from './sections/mediaRowSection'
+import {videoShowcaseSection} from './sections/videoShowcaseSection'
 import {testimonialSection} from './sections/testimonialSection'
 import {blockContent} from './objects/blockContent'
 import {photoMosaicSection} from './sections/photoMosaicSection'
@@ -46,8 +46,8 @@ export const schemaTypes = [
   imageSection,
   ctaSection,
   splitHeroSection,
-  mediaGridSection,
-  mediaShowcaseSection,
+  mediaRowSection,
+  videoShowcaseSection,
   testimonialSection,
   photoMosaicSection,
 

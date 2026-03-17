@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity'
 
-export const mediaGridSection = defineType({
-  name: 'mediaGridSection',
-  title: 'Media Grid',
+export const mediaRowSection = defineType({
+  name: 'mediaRowSection',
+  title: 'Media Row Section',
+  description:
+    'Render one media type at a time (photos or videos) with a single orientation. Rows show up to four cards before wrapping and stay responsive at smaller breakpoints.',
   type: 'object',
   fields: [
     defineField({
@@ -17,9 +19,26 @@ export const mediaGridSection = defineType({
       rows: 3,
     }),
     defineField({
-      name: 'mediaType',
-      title: 'Section media type',
+      name: 'mediaOrientation',
+      title: 'Media orientation',
       type: 'string',
+      description: 'Choose portrait or landscape for every item in this row (mixing is not supported).',
+      initialValue: 'portrait',
+      options: {
+        layout: 'radio',
+        direction: 'horizontal',
+        list: [
+          {title: 'Portrait (tall)', value: 'portrait'},
+          {title: 'Landscape (wide)', value: 'landscape'},
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'mediaType',
+      title: 'Media type',
+      type: 'string',
+      description: 'Select whether this row uses photos or videos; items must all be the same type.',
       initialValue: 'photo',
       options: {
         layout: 'radio',
@@ -28,36 +47,6 @@ export const mediaGridSection = defineType({
           {title: 'Photo', value: 'photo'},
           {title: 'Video', value: 'video'},
         ],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'mediaOrientation',
-      title: 'Media orientation',
-      type: 'string',
-      initialValue: 'landscape',
-      options: {
-        layout: 'radio',
-        list: [
-          {title: 'Landscape (wide)', value: 'landscape'},
-          {title: 'Portrait (tall)', value: 'portrait'},
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'columns',
-      title: 'Columns',
-      type: 'string',
-      initialValue: '3',
-      options: {
-        list: [
-          {title: '2 columns', value: '2'},
-          {title: '3 columns', value: '3'},
-          {title: '4 columns', value: '4'},
-        ],
-        layout: 'radio',
-        direction: 'horizontal',
       },
       validation: (Rule) => Rule.required(),
     }),
@@ -84,12 +73,16 @@ export const mediaGridSection = defineType({
       const photos = (value as {photos?: unknown[]}).photos
       const videos = (value as {videos?: unknown[]}).videos
 
-      if (mediaType === 'photo' && (!Array.isArray(photos) || photos.length < 2)) {
-        return 'Add at least 2 photos when media type is photo.'
+      if (mediaType === 'photo') {
+        if (!Array.isArray(photos) || photos.length === 0) {
+          return 'Add at least one photo for this section.'
+        }
       }
 
-      if (mediaType === 'video' && (!Array.isArray(videos) || videos.length < 2)) {
-        return 'Add at least 2 videos when media type is video.'
+      if (mediaType === 'video') {
+        if (!Array.isArray(videos) || videos.length === 0) {
+          return 'Add at least one video for this section.'
+        }
       }
 
       return true
@@ -105,16 +98,14 @@ export const mediaGridSection = defineType({
     prepare({title, mediaType, photos, videos, mediaOrientation}) {
       const count =
         mediaType === 'video'
-          ? Array.isArray(videos)
-            ? videos.length
-            : 0
+          ? (Array.isArray(videos) ? videos.length : 0)
           : Array.isArray(photos)
             ? photos.length
             : 0
-      const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
+      const orientationLabel = mediaOrientation === 'landscape' ? 'landscape' : 'portrait'
 
       return {
-        title: title ? `Media Grid · ${title}` : 'Media Grid',
+        title: title ? `Media Row · ${title}` : 'Media Row Section',
         subtitle: `${count} ${mediaType === 'video' ? 'videos' : 'photos'} (${orientationLabel})`,
       }
     },

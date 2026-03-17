@@ -9,13 +9,7 @@ export const homepage = defineType({
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [
-        {type: 'splitHeroSection'},
-        {type: 'textSection'},
-        {type: 'mediaGridSection'},
-        {type: 'mediaShowcaseSection'},
-        {type: 'ctaSection'},
-      ],
+      of: [{type: 'splitHeroSection'}],
     }),
   ],
 })

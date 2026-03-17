@@ -21,21 +21,15 @@ export const videoItem = defineType({
       type: 'string',
       description: 'Used as iframe title for accessibility.',
     }),
-    defineField({
-      name: 'caption',
-      title: 'Caption',
-      type: 'string',
-    }),
   ],
   preview: {
     select: {
-      title: 'caption',
-      videoTitle: 'title',
+      title: 'title',
       subtitle: 'url',
     },
-    prepare({title, videoTitle, subtitle}) {
+    prepare({title, subtitle}) {
       return {
-        title: title || videoTitle || 'Video item',
+        title: title || 'Video item',
         subtitle,
       }
     },
