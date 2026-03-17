@@ -44,6 +44,7 @@ export const page = defineType({
         {type: 'mediaShowcaseSection'},
         {type: 'ctaSection'},
         {type: 'testimonialSection'},
+        {type: 'photoMosaicSection'},
       ],
     }),
   ],

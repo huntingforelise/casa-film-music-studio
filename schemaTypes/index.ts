@@ -22,6 +22,7 @@ import {mediaGridSection} from './sections/mediaGridSection'
 import {mediaShowcaseSection} from './sections/mediaShowcaseSection'
 import {testimonialSection} from './sections/testimonialSection'
 import {blockContent} from './objects/blockContent'
+import {photoMosaicSection} from './sections/photoMosaicSection'
 
 export const schemaTypes = [
   header,
@@ -48,6 +49,7 @@ export const schemaTypes = [
   mediaGridSection,
   mediaShowcaseSection,
   testimonialSection,
+  photoMosaicSection,
 
   blockContent,
 ]

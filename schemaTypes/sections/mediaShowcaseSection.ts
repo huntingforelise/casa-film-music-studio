@@ -32,20 +32,17 @@ export const mediaShowcaseSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'layoutVariant',
-      title: 'Single item layout',
+      name: 'mediaOrientation',
+      title: 'Media orientation',
       type: 'string',
-      initialValue: 'auto',
+      initialValue: 'landscape',
       options: {
-        list: [
-          {title: 'Auto', value: 'auto'},
-          {title: 'Compact', value: 'compact'},
-          {title: 'Hero', value: 'hero'},
-        ],
         layout: 'radio',
-        direction: 'horizontal',
+        list: [
+          {title: 'Landscape (wide)', value: 'landscape'},
+          {title: 'Portrait (tall)', value: 'portrait'},
+        ],
       },
-      description: 'Used when there are no supporting items.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -95,11 +92,17 @@ export const mediaShowcaseSection = defineType({
         return 'Select a featured video when media type is video.'
       }
 
-      if (mediaType === 'photo' && (!Array.isArray(supportingPhotos) || supportingPhotos.length < 1)) {
+      if (
+        mediaType === 'photo' &&
+        (!Array.isArray(supportingPhotos) || supportingPhotos.length < 1)
+      ) {
         return 'Add at least 1 supporting photo when media type is photo.'
       }
 
-      if (mediaType === 'video' && (!Array.isArray(supportingVideos) || supportingVideos.length < 1)) {
+      if (
+        mediaType === 'video' &&
+        (!Array.isArray(supportingVideos) || supportingVideos.length < 1)
+      ) {
         return 'Add at least 1 supporting video when media type is video.'
       }
 
@@ -111,8 +114,9 @@ export const mediaShowcaseSection = defineType({
       mediaType: 'mediaType',
       photos: 'photos',
       videos: 'videos',
+      mediaOrientation: 'mediaOrientation',
     },
-    prepare({title, mediaType, photos, videos}) {
+    prepare({title, mediaType, photos, videos, mediaOrientation}) {
       const count =
         mediaType === 'video'
           ? Array.isArray(videos)
@@ -121,10 +125,11 @@ export const mediaShowcaseSection = defineType({
           : Array.isArray(photos)
             ? photos.length
             : 0
+      const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
 
       return {
-        title: title || 'Media Showcase',
-        subtitle: `${count} supporting ${mediaType === 'video' ? 'videos' : 'photos'}`,
+        title: title ? `Media Showcase · ${title}` : 'Media Showcase',
+        subtitle: `1 + ${count} supporting ${mediaType === 'video' ? 'videos' : 'photos'} (${orientationLabel})`,
       }
     },
   },

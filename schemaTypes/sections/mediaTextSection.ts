@@ -47,14 +47,15 @@ export const mediaTextSection = defineType({
       name: 'mediaOrientation',
       title: 'Media orientation',
       type: 'string',
+      initialValue: 'landscape',
       options: {
+        layout: 'radio',
         list: [
           {title: 'Landscape (wide)', value: 'landscape'},
           {title: 'Portrait (tall)', value: 'portrait'},
         ],
-        layout: 'radio',
       },
-      initialValue: 'landscape',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'image',
@@ -113,8 +114,8 @@ export const mediaTextSection = defineType({
       const mediaLabel = mediaType === 'video' ? 'Video' : 'Photo'
       const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
       return {
-        title: title ? `${title}` : 'Media + Text Section',
-        subtitle: `${mediaLabel} (${orientationLabel}) section`,
+        title: title ? `Media + Text Section · ${title}` : 'Media + Text Section',
+        subtitle: `${mediaLabel} (${orientationLabel})`,
       }
     },
   },
