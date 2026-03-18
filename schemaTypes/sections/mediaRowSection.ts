@@ -8,21 +8,11 @@ export const mediaRowSection = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
       name: 'mediaOrientation',
       title: 'Media orientation',
       type: 'string',
-      description: 'Choose portrait or landscape for every item in this row (mixing is not supported).',
+      description:
+        'Choose portrait or landscape for every item in this row (mixing is not supported).',
       initialValue: 'portrait',
       options: {
         layout: 'radio',
@@ -38,7 +28,8 @@ export const mediaRowSection = defineType({
       name: 'mediaType',
       title: 'Media type',
       type: 'string',
-      description: 'Select whether this row uses photos or videos; items must all be the same type.',
+      description:
+        'Select whether this row uses photos or videos; items must all be the same type.',
       initialValue: 'photo',
       options: {
         layout: 'radio',
@@ -89,23 +80,24 @@ export const mediaRowSection = defineType({
     }),
   preview: {
     select: {
-      title: 'title',
       mediaType: 'mediaType',
       photos: 'photos',
       videos: 'videos',
       mediaOrientation: 'mediaOrientation',
     },
-    prepare({title, mediaType, photos, videos, mediaOrientation}) {
+    prepare({mediaType, photos, videos, mediaOrientation}) {
       const count =
         mediaType === 'video'
-          ? (Array.isArray(videos) ? videos.length : 0)
+          ? Array.isArray(videos)
+            ? videos.length
+            : 0
           : Array.isArray(photos)
             ? photos.length
             : 0
       const orientationLabel = mediaOrientation === 'landscape' ? 'landscape' : 'portrait'
 
       return {
-        title: title ? `Media Row · ${title}` : 'Media Row Section',
+        title: 'Media Row Section',
         subtitle: `${count} ${mediaType === 'video' ? 'videos' : 'photos'} (${orientationLabel})`,
       }
     },

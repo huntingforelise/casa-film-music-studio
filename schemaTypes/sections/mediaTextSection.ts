@@ -29,6 +29,7 @@ export const mediaTextSection = defineType({
         layout: 'radio',
       },
       initialValue: 'photo',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mediaPosition',
@@ -42,6 +43,7 @@ export const mediaTextSection = defineType({
         layout: 'radio',
       },
       initialValue: 'right',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mediaOrientation',
@@ -61,6 +63,7 @@ export const mediaTextSection = defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
+      hidden: ({parent}) => parent?.mediaType !== 'photo',
       options: {
         hotspot: true,
       },
@@ -86,6 +89,7 @@ export const mediaTextSection = defineType({
       name: 'video',
       title: 'Video',
       type: 'videoItem',
+      hidden: ({parent}) => parent?.mediaType !== 'video',
       validation: (Rule) =>
         Rule.custom((value, context) => {
           const parent = context?.parent as {mediaType?: 'photo' | 'video'} | undefined

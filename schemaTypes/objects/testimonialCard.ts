@@ -18,32 +18,14 @@ export const testimonialCard = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: 'image',
-      title: 'Photo',
-      type: 'image',
-      options: {hotspot: true},
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt text',
-          type: 'string',
-          validation: (Rule) => Rule.max(140),
-        }),
-      ],
-    }),
   ],
   preview: {
     select: {
       title: 'author',
-      subtitle: 'role',
-      media: 'image',
     },
-    prepare({title, subtitle, media}: {title?: string; subtitle?: string; media?: any}) {
+    prepare({title}: {title?: string}) {
       return {
-        title: title || 'Testimonial',
-        subtitle: subtitle || 'Card',
-        media,
+        title: title ? `Testimonial by ${title}` : 'Testimonial',
       }
     },
   },

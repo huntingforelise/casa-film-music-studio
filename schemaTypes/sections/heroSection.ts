@@ -22,14 +22,12 @@ export const heroSection = defineType({
   ],
   preview: {
     select: {
-      title: 'title',
-      subtitle: 'subtitle',
       media: 'image',
     },
-    prepare({title, subtitle, media}) {
+    prepare({media}) {
       return {
-        title: title || 'Hero section',
-        subtitle: subtitle ?? 'Fullscreen hero image',
+        title: 'Hero section',
+        subtitle: 'Fullscreen hero image',
         media,
       }
     },

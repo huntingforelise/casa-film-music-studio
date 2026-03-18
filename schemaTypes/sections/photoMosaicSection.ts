@@ -24,12 +24,6 @@ export const photoMosaicSection = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-
-    defineField({
       name: 'slotA',
       title: 'Slot A — Large Landscape',
       description: 'Best for a landscape image',
@@ -97,11 +91,27 @@ export const photoMosaicSection = defineType({
 
   preview: {
     select: {
-      title: 'title',
+      slotA: 'slotA',
+      slotB: 'slotB',
+      slotC: 'slotC',
+      slotD: 'slotD',
+      slotE: 'slotE',
+      slotF: 'slotF',
+      slotG: 'slotG',
+      slotH: 'slotH',
+      slotI: 'slotI',
     },
-    prepare({title}) {
+    prepare(selection) {
+      const count = SLOT_KEYS.filter((key) =>
+        Boolean((selection[key] as {image?: unknown} | undefined)?.image),
+      ).length
+
+      const layoutLabel =
+        count >= 9 ? '9 images' : count >= 6 ? '6 images' : count >= 3 ? '3 images' : '0 images'
+
       return {
-        title: title ? `Photo Mosaic Section · ${title}` : 'Photo Mosaic Section',
+        title: 'Photo Mosaic Section',
+        subtitle: layoutLabel,
       }
     },
   },
