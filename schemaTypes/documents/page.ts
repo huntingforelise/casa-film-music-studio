@@ -23,10 +23,9 @@ export const page = defineType({
       initialValue: 'default',
       options: {
         list: [
-          {title: 'Default page', value: 'default'},
-          {title: 'About page', value: 'about'},
-          {title: 'Contact page', value: 'contact'},
-          {title: 'Booking page', value: 'booking'},
+          {title: 'Standard hero page', value: 'standardHero'},
+          {title: 'Compact hero page', value: 'compactHero'},
+          {title: 'Full screen hero page', value: 'fullScreenHero'},
         ],
         layout: 'dropdown',
       },
