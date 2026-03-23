@@ -43,6 +43,7 @@ export const page = defineType({
         {type: 'videoShowcaseSection'},
         {type: 'ctaSection'},
         {type: 'testimonialSection'},
+        {type: 'faqSection'},
         {type: 'photoMosaicSection'},
       ],
     }),

@@ -32,6 +32,7 @@ export const blockContent = defineType({
                 name: 'href',
                 type: 'url',
                 title: 'URL',
+                validation: (Rule) => Rule.uri({allowRelative: true}),
               },
             ],
           },
