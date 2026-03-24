@@ -60,11 +60,11 @@ export const footer = defineType({
       initialValue: 'Ready to capture your moments?',
     }),
     defineField({
-      name: 'contactHeading',
-      title: 'Contact Heading',
+      name: 'ctaText',
+      title: 'CTA Text',
       type: 'string',
       validation: (Rule) => Rule.max(120),
-      initialValue: 'Contact',
+      initialValue: "Get in touch with us - we'd love to chat!",
     }),
   ],
 })
