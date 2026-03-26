@@ -60,6 +60,21 @@ export const mediaTextSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'portraitMediaSize',
+      title: 'Portrait media size',
+      type: 'string',
+      hidden: ({parent}) => parent?.mediaOrientation !== 'portrait',
+      initialValue: 'large',
+      options: {
+        layout: 'radio',
+        list: [
+          {title: 'Large (default)', value: 'large'},
+          {title: 'Standard', value: 'standard'},
+          {title: 'Small (smallest)', value: 'small'},
+        ],
+      },
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -105,21 +120,28 @@ export const mediaTextSection = defineType({
       title: 'title',
       mediaType: 'mediaType',
       mediaOrientation: 'mediaOrientation',
+      portraitMediaSize: 'portraitMediaSize',
     },
     prepare({
       title,
       mediaType,
       mediaOrientation,
+      portraitMediaSize,
     }: {
       title?: string
       mediaType?: string
       mediaOrientation?: string
+      portraitMediaSize?: string
     }) {
       const mediaLabel = mediaType === 'video' ? 'Video' : 'Photo'
       const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
+      const sizeLabel =
+        mediaOrientation === 'portrait'
+          ? `, ${portraitMediaSize === 'small' ? 'small' : portraitMediaSize === 'standard' ? 'standard' : 'large'}`
+          : ''
       return {
         title: title ? `Media + Text Section · ${title}` : 'Media + Text Section',
-        subtitle: `${mediaLabel} (${orientationLabel})`,
+        subtitle: `${mediaLabel} (${orientationLabel}${sizeLabel})`,
       }
     },
   },
