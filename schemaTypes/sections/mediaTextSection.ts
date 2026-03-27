@@ -60,16 +60,30 @@ export const mediaTextSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'portraitMediaSize',
-      title: 'Portrait media size',
+      name: 'landscapeMediaSize',
+      title: 'Landscape media size',
       type: 'string',
-      hidden: ({parent}) => parent?.mediaOrientation !== 'portrait',
+      hidden: ({parent}) => parent?.mediaOrientation !== 'landscape',
       initialValue: 'large',
       options: {
         layout: 'radio',
         list: [
           {title: 'Large (default)', value: 'large'},
-          {title: 'Standard', value: 'standard'},
+          {title: 'Small', value: 'small'},
+        ],
+      },
+    }),
+    defineField({
+      name: 'portraitMediaSize',
+      title: 'Portrait media size',
+      type: 'string',
+      hidden: ({parent}) => parent?.mediaOrientation !== 'portrait',
+      initialValue: 'standard',
+      options: {
+        layout: 'radio',
+        list: [
+          {title: 'Standard (default)', value: 'standard'},
+          {title: 'Large', value: 'large'},
           {title: 'Small (smallest)', value: 'small'},
         ],
       },
@@ -120,25 +134,37 @@ export const mediaTextSection = defineType({
       title: 'title',
       mediaType: 'mediaType',
       mediaOrientation: 'mediaOrientation',
+      landscapeMediaSize: 'landscapeMediaSize',
       portraitMediaSize: 'portraitMediaSize',
     },
     prepare({
       title,
       mediaType,
       mediaOrientation,
+      landscapeMediaSize,
       portraitMediaSize,
     }: {
       title?: string
       mediaType?: string
       mediaOrientation?: string
+      landscapeMediaSize?: string
       portraitMediaSize?: string
     }) {
       const mediaLabel = mediaType === 'video' ? 'Video' : 'Photo'
       const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
-      const sizeLabel =
-        mediaOrientation === 'portrait'
-          ? `, ${portraitMediaSize === 'small' ? 'small' : portraitMediaSize === 'standard' ? 'standard' : 'large'}`
-          : ''
+      let sizeLabel = ''
+
+      if (mediaOrientation === 'portrait') {
+        sizeLabel = `, ${
+          portraitMediaSize === 'small'
+            ? 'small'
+            : portraitMediaSize === 'standard'
+              ? 'standard'
+              : 'large'
+        }`
+      } else {
+        sizeLabel = landscapeMediaSize === 'small' ? ', small' : ', large'
+      }
       return {
         title: title ? `Media + Text Section · ${title}` : 'Media + Text Section',
         subtitle: `${mediaLabel} (${orientationLabel}${sizeLabel})`,
