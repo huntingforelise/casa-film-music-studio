@@ -22,6 +22,11 @@ export const structure: StructureResolver = (S) =>
         .child(S.document().schemaType('footer').documentId('footer')),
 
       S.listItem()
+        .title('Cookie Banner')
+        .id('cookieBanner')
+        .child(S.document().schemaType('cookieBanner').documentId('cookieBanner')),
+
+      S.listItem()
         .title('Booking Settings')
         .id('bookingSettings')
         .child(S.document().schemaType('bookingSettings').documentId('bookingSettings')),

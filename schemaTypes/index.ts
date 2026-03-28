@@ -1,5 +1,6 @@
 import {header} from './documents/header'
 import {footer} from './documents/footer'
+import {cookieBanner} from './documents/cookieBanner'
 import {homepage} from './documents/homepage'
 import {contactForm} from './documents/contactForm'
 import {page} from './documents/page'
@@ -30,6 +31,7 @@ import {photoMosaicSection} from './sections/photoMosaicSection'
 export const schemaTypes = [
   header,
   footer,
+  cookieBanner,
   homepage,
   contactForm,
   page,
