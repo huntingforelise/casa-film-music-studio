@@ -120,7 +120,7 @@ export const mediaTextSection = defineType({
           title: 'Alt text',
           type: 'string',
           description: 'Describe the image for screen readers.',
-          validation: (Rule) => Rule.max(140),
+          validation: (Rule) => Rule.required().max(140),
         }),
       ],
       validation: (Rule) =>
