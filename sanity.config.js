@@ -1,0 +1,24 @@
+import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
+import { schemaTypes } from './schemaTypes';
+import { singletonTypes } from './lib/singletons';
+import { structure } from './structure';
+export default defineConfig({
+    name: 'default',
+    title: 'Casa Film Music',
+    projectId: '1t1ea2j9',
+    dataset: 'production',
+    plugins: [structureTool({ structure }), visionTool()],
+    schema: {
+        types: schemaTypes,
+    },
+    document: {
+        newDocumentOptions: (prev, { creationContext }) => {
+            if (creationContext.type === 'global') {
+                return prev.filter((templateItem) => !singletonTypes.has(templateItem.templateId));
+            }
+            return prev;
+        },
+    }
+});

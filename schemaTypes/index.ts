@@ -15,6 +15,7 @@ import {faqItem} from './objects/faqItem'
 
 import {heroSection} from './sections/heroSection'
 import {textSection} from './sections/textSection'
+import {twoColumnTextSection} from './sections/twoColumnTextSection'
 import {mediaTextSection} from './sections/mediaTextSection'
 import {ctaSection} from './sections/ctaSection'
 import {splitHeroSection} from './sections/splitHeroSection'
@@ -43,6 +44,7 @@ export const schemaTypes = [
 
   heroSection,
   textSection,
+  twoColumnTextSection,
   mediaTextSection,
   ctaSection,
   splitHeroSection,

@@ -38,6 +38,7 @@ export const page = defineType({
       of: [
         {type: 'heroSection'},
         {type: 'textSection'},
+        {type: 'twoColumnTextSection'},
         {type: 'mediaTextSection'},
         {type: 'mediaRowSection'},
         {type: 'videoShowcaseSection'},

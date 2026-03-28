@@ -43,7 +43,25 @@ export const mediaTextSection = defineType({
         layout: 'radio',
       },
       initialValue: 'right',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((value, context) => {
+          const parent = context?.parent as {
+            mediaOrientation?: 'landscape' | 'portrait'
+            landscapeMediaSize?: 'small' | 'large'
+            portraitMediaSize?: 'small' | 'standard' | 'large'
+          } | undefined
+
+          const isSmallMedia =
+            parent?.mediaOrientation === 'landscape'
+              ? parent.landscapeMediaSize === 'small'
+              : parent?.portraitMediaSize === 'small'
+
+          if (value === 'left' && isSmallMedia) {
+            return 'Small media must be placed on the right.'
+          }
+
+          return true
+        }),
     }),
     defineField({
       name: 'mediaOrientation',
