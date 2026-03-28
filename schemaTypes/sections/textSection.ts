@@ -1,10 +1,15 @@
-import { defineType } from "sanity";
+import {defineType} from 'sanity'
 
 export const textSection = defineType({
   name: 'textSection',
   title: 'Text Section',
   type: 'object',
   fields: [
-    { name: 'content', type: 'array', of: [{ type: 'block' }] },
+    {
+      name: 'content',
+      type: 'array',
+      of: [{type: 'block'}],
+      validation: (Rule) => Rule.required().min(1),
+    },
   ],
 })

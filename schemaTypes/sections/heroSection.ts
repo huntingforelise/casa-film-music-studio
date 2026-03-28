@@ -9,6 +9,7 @@ export const heroSection = defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'alt',
