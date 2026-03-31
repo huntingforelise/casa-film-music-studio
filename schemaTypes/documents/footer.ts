@@ -26,6 +26,13 @@ export const footer = defineType({
       validation: (Rule) => Rule.required().email().error('Please enter a valid email address'),
     }),
     defineField({
+      name: 'studioAddress',
+      title: 'Studio Address',
+      type: 'text',
+      rows: 3,
+      description: 'Add the studio address exactly as it should appear in the footer.',
+    }),
+    defineField({
       name: 'otherLinks',
       title: 'Other Links',
       type: 'array',
