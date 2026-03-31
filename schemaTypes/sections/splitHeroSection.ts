@@ -6,25 +6,10 @@ export const splitHeroSection = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'question',
-      title: 'Main Question',
+      name: 'introLine',
+      title: 'Intro line',
       type: 'string',
-    }),
-
-    defineField({
-      name: 'image',
-      title: 'Background image',
-      type: 'image',
-      options: {hotspot: true},
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt text',
-          type: 'string',
-          description: 'Describe the image for screen readers.',
-          validation: (Rule) => Rule.required().max(140),
-        }),
-      ],
+      description: 'Optional. Keep it short and direct, like a route into the page.',
       validation: (Rule) => Rule.required(),
     }),
 
@@ -35,18 +20,38 @@ export const splitHeroSection = defineType({
       fields: [
         defineField({
           name: 'title',
+          title: 'Title',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'link',
+          title: 'Link',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'subtitle',
+          title: 'Subtitle',
           type: 'string',
           validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'image',
+          title: 'Image',
+          type: 'image',
+          options: {hotspot: true},
+          validation: (Rule) => Rule.required(),
+          description: 'Use an image that speaks to this audience.',
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt text',
+              type: 'string',
+              description: 'Describe the image for screen readers.',
+              validation: (Rule) => Rule.required().max(140),
+            }),
+          ],
         }),
       ],
     }),
@@ -58,33 +63,53 @@ export const splitHeroSection = defineType({
       fields: [
         defineField({
           name: 'title',
+          title: 'Title',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'link',
+          title: 'Link',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'subtitle',
+          title: 'Subtitle',
           type: 'string',
           validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'image',
+          title: 'Image',
+          type: 'image',
+          options: {hotspot: true},
+          validation: (Rule) => Rule.required(),
+          description: 'Use an image that speaks to this audience.',
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt text',
+              type: 'string',
+              description: 'Describe the image for screen readers.',
+              validation: (Rule) => Rule.required().max(140),
+            }),
+          ],
         }),
       ],
     }),
   ],
   preview: {
     select: {
-      title: 'question',
-      media: 'image',
+      title: 'introLine',
+      media: 'optionOne.image',
       optionOne: 'optionOne.title',
       optionTwo: 'optionTwo.title',
     },
     prepare({title, media, optionOne, optionTwo}) {
       return {
         title: title || 'Split Hero',
-        subtitle: `${optionOne || 'Left'} / ${optionTwo || 'Right'}`,
+        subtitle: `${optionOne || 'Professional'} / ${optionTwo || 'Private'}`,
         media,
       }
     },
