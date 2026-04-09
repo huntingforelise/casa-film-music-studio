@@ -10,6 +10,14 @@ export const homepage = defineType({
       title: 'Sections',
       type: 'array',
       of: [{type: 'splitHeroSection'}],
+      validation: (Rule) => Rule.required().min(1).max(1),
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Homepage',
+      }
+    },
+  },
 })

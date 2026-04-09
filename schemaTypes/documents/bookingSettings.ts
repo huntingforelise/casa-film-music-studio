@@ -490,4 +490,11 @@ export const bookingSettings = defineType({
       ],
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Booking Settings',
+      }
+    },
+  },
 })

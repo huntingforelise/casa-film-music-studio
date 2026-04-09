@@ -80,4 +80,11 @@ export const cookieBanner = defineType({
       validation: (Rule) => Rule.required().max(40),
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Cookie Banner',
+      }
+    },
+  },
 })

@@ -74,4 +74,11 @@ export const footer = defineType({
       initialValue: "Get in touch with us - we'd love to chat!",
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Footer',
+      }
+    },
+  },
 })
