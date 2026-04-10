@@ -18,7 +18,8 @@ export const logoStripSection = defineType({
       title: 'Intro copy',
       type: 'text',
       rows: 2,
-      description: 'Optional supporting copy above the logo grid.',
+      description: 'Supporting copy above the logo grid.',
+      validation: (Rule) => Rule.required().max(120),
     }),
     defineField({
       name: 'logos',
