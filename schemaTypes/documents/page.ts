@@ -50,6 +50,31 @@ export const page = defineType({
         {type: 'faqSection'},
         {type: 'photoMosaicSection'},
       ],
+      validation: (Rule) =>
+        Rule.custom((sections, context) => {
+          const template = (context?.document as {template?: string} | undefined)?.template
+          const heroCount = Array.isArray(sections)
+            ? sections.filter((section) => (section as {_type?: string})?._type === 'heroSection').length
+            : 0
+
+          if (template === 'compactHero') {
+            return heroCount === 0
+              ? true
+              : 'Compact hero pages cannot include a Hero section.'
+          }
+
+          if (template === 'standardHero' || template === 'fullScreenHero') {
+            if (heroCount === 0) {
+              return 'Add exactly one Hero section for this page template.'
+            }
+
+            if (heroCount > 1) {
+              return 'Use only one Hero section for this page template.'
+            }
+          }
+
+          return true
+        }),
     }),
   ],
 })
