@@ -29,12 +29,10 @@ export const testimonialSection = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'intro',
     },
-    prepare({title, subtitle}: {title?: string; subtitle?: string}) {
+    prepare({title}: {title?: string}) {
       return {
         title: title || 'Testimonial Section',
-        subtitle: subtitle || 'Scrolling cards',
       }
     },
   },
