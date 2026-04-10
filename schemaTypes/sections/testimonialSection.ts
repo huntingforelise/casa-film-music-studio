@@ -23,7 +23,7 @@ export const testimonialSection = defineType({
       title: 'Testimonial cards',
       type: 'array',
       of: [{type: 'testimonialCard'}],
-      validation: (Rule) => Rule.required().min(1).max(12),
+      validation: (Rule) => Rule.required().min(2).max(12),
     }),
   ],
   preview: {
