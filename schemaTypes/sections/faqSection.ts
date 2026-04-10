@@ -6,6 +6,19 @@ export const faqSection = defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'Optional heading above the FAQ cards.',
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Intro copy',
+      type: 'text',
+      rows: 2,
+      description: 'Optional supporting copy above the FAQ cards.',
+    }),
+    defineField({
       name: 'items',
       title: 'FAQ Items',
       type: 'array',
@@ -15,13 +28,17 @@ export const faqSection = defineType({
   ],
   preview: {
     select: {
+      title: 'title',
+      intro: 'intro',
       items: 'items',
     },
-    prepare({items}: {items?: unknown[]}) {
+    prepare({title, intro, items}: {title?: string; intro?: string; items?: unknown[]}) {
       const count = Array.isArray(items) ? items.length : 0
       return {
-        title: 'FAQ Section',
-        subtitle: count ? `${count} question${count === 1 ? '' : 's'}` : 'No questions yet',
+        title: title || 'FAQ Section',
+        subtitle:
+          intro?.trim() ||
+          (count ? `${count} question${count === 1 ? '' : 's'}` : 'No questions yet'),
       }
     },
   },
