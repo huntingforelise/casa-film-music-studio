@@ -1,8 +1,9 @@
 import {defineField, defineType} from 'sanity'
 
-export const testimonialSection = defineType({
-  name: 'testimonialSection',
-  title: 'Testimonial Section',
+export const featureCardSection = defineType({
+  name: 'featureCardSection',
+  title: 'Feature Card Section',
+  description: 'A vertical card grid with a title, subtitle, image, and descriptive text.',
   type: 'object',
   fields: [
     defineField({
@@ -12,17 +13,17 @@ export const testimonialSection = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'intro',
-      title: 'Intro copy',
+      name: 'subtitle',
+      title: 'Subtitle',
       type: 'text',
       rows: 2,
-      description: 'Optional supporting copy above the cards.',
+      description: 'Supporting copy above the cards.',
     }),
     defineField({
       name: 'cards',
-      title: 'Testimonial cards',
+      title: 'Feature cards',
       type: 'array',
-      of: [{type: 'testimonialCard'}],
+      of: [{type: 'featureCard'}],
       validation: (Rule) => Rule.required().min(2).max(12),
     }),
   ],
@@ -35,8 +36,8 @@ export const testimonialSection = defineType({
       const count = Array.isArray(cards) ? cards.length : 0
 
       return {
-        title: title || 'Testimonial Section',
-        subtitle: `${count} testimonial${count === 1 ? '' : 's'}`,
+        title: title || 'Feature Card Section',
+        subtitle: `${count} card${count === 1 ? '' : 's'}`,
       }
     },
   },

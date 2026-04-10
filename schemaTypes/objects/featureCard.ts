@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
-export const testimonialCard = defineType({
-  name: 'testimonialCard',
-  title: 'Testimonial Card',
+export const featureCard = defineType({
+  name: 'featureCard',
+  title: 'Feature Card',
   type: 'object',
   fields: [
     defineField({
@@ -22,35 +22,27 @@ export const testimonialCard = defineType({
       ],
     }),
     defineField({
-      name: 'name',
-      title: 'Name',
+      name: 'title',
+      title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'occasion',
-      title: 'Occasion',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(80),
     }),
     defineField({
       name: 'text',
-      title: 'Testimonial text',
+      title: 'Text',
       type: 'text',
       rows: 5,
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(400),
     }),
   ],
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'occasion',
+      title: 'title',
       media: 'image',
     },
-    prepare({title, subtitle, media}: {title?: string; subtitle?: string; media?: any}) {
+    prepare({title, media}: {title?: string; media?: any}) {
       return {
-        title: title ? `Testimonial by ${title}` : 'Testimonial',
-        subtitle,
+        title: title || 'Feature card',
         media,
       }
     },

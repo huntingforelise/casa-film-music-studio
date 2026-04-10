@@ -12,6 +12,7 @@ import {socialLink} from './objects/socialLink'
 import {photoItem} from './objects/photoItem'
 import {logoItem} from './objects/logoItem'
 import {testimonialCard} from './objects/testimonialCard'
+import {featureCard} from './objects/featureCard'
 import {videoItem} from './objects/videoItem'
 import {faqItem} from './objects/faqItem'
 
@@ -25,6 +26,7 @@ import {splitHeroSection} from './sections/splitHeroSection'
 import {mediaRowSection} from './sections/mediaRowSection'
 import {videoShowcaseSection} from './sections/videoShowcaseSection'
 import {testimonialSection} from './sections/testimonialSection'
+import {featureCardSection} from './sections/featureCardSection'
 import {logoStripSection} from './sections/logoStripSection'
 import {faqSection} from './sections/faqSection'
 import {blockContent} from './objects/blockContent'
@@ -46,6 +48,7 @@ export const schemaTypes = [
   logoItem,
   videoItem,
   testimonialCard,
+  featureCard,
   faqItem,
 
   heroSection,
@@ -58,6 +61,7 @@ export const schemaTypes = [
   mediaRowSection,
   videoShowcaseSection,
   testimonialSection,
+  featureCardSection,
   logoStripSection,
   faqSection,
   photoMosaicSection,
