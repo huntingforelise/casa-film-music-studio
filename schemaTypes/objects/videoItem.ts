@@ -21,16 +21,24 @@ export const videoItem = defineType({
       type: 'string',
       description: 'Used as iframe title for accessibility.',
     }),
+    defineField({
+      name: 'interactive',
+      title: 'Interactive player',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Enable controls and sound for the one video that should be interactive.',
+    }),
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'url',
+      interactive: 'interactive',
     },
-    prepare({title, subtitle}) {
+    prepare({title, subtitle, interactive}) {
       return {
         title: title || 'Video item',
-        subtitle,
+        subtitle: subtitle ? `${interactive ? 'interactive player' : 'muted autoplay'} · ${subtitle}` : interactive ? 'interactive player' : 'muted autoplay',
       }
     },
   },
