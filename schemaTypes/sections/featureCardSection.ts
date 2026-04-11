@@ -3,9 +3,16 @@ import {defineField, defineType} from 'sanity'
 export const featureCardSection = defineType({
   name: 'featureCardSection',
   title: 'Feature Card Section',
-  description: 'A vertical card grid with a title, subtitle, image, and descriptive text.',
+  description:
+    'A vertical card grid with an optional eyebrow, intro copy, images, and a supporting callout.',
   type: 'object',
   fields: [
+    defineField({
+      name: 'eyebrow',
+      title: 'Eyebrow',
+      type: 'string',
+      description: 'Optional short label above the title.',
+    }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -25,6 +32,26 @@ export const featureCardSection = defineType({
       type: 'array',
       of: [{type: 'featureCard'}],
       validation: (Rule) => Rule.required().min(2).max(12),
+    }),
+    defineField({
+      name: 'calloutTitle',
+      title: 'Callout title',
+      type: 'string',
+      description: 'Optional heading for an included-in-all-options panel.',
+    }),
+    defineField({
+      name: 'calloutText',
+      title: 'Callout text',
+      type: 'text',
+      rows: 3,
+      description: 'Optional short paragraph for the support panel.',
+    }),
+    defineField({
+      name: 'calloutItems',
+      title: 'Callout items',
+      type: 'array',
+      description: 'Optional bullet list for shared inclusions or setup details.',
+      of: [{type: 'string'}],
     }),
   ],
   preview: {
