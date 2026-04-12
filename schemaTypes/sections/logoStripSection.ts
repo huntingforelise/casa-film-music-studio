@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
 
 export const logoStripSection = defineType({
   name: 'logoStripSection',
@@ -6,21 +7,7 @@ export const logoStripSection = defineType({
   description: 'A responsive grid of client or partner logos.',
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'Short label for the section, such as Clients or Partners.',
-      validation: (Rule) => Rule.required().max(80),
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro copy',
-      type: 'text',
-      rows: 2,
-      description: 'Supporting copy above the logo grid.',
-      validation: (Rule) => Rule.required().max(120),
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'logos',
       title: 'Logos',

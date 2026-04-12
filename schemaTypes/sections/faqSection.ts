@@ -1,23 +1,12 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
 
 export const faqSection = defineType({
   name: 'faqSection',
   title: 'FAQ Section',
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'Optional heading above the FAQ cards.',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro copy',
-      type: 'text',
-      rows: 2,
-      description: 'Optional supporting copy above the FAQ cards.',
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'items',
       title: 'FAQ Items',

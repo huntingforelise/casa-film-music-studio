@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
 
 const SUPPORTING_VIDEO_COUNTS = {
   landscape: 2,
@@ -10,17 +11,7 @@ export const videoShowcaseSection = defineType({
   title: 'Video Showcase',
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'text',
-      rows: 3,
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'mediaOrientation',
       title: 'Media orientation',

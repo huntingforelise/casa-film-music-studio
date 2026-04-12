@@ -1,23 +1,12 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
 
 export const testimonialSection = defineType({
   name: 'testimonialSection',
   title: 'Testimonial Section',
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro copy',
-      type: 'text',
-      rows: 2,
-      description: 'Optional supporting copy above the cards.',
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'cards',
       title: 'Testimonial cards',

@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
 
 export const featureCardSection = defineType({
   name: 'featureCardSection',
@@ -7,25 +8,7 @@ export const featureCardSection = defineType({
     'A vertical card grid with an optional eyebrow, intro copy, images, and a supporting callout.',
   type: 'object',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-      description: 'Optional short label above the title.',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'text',
-      rows: 2,
-      description: 'Supporting copy above the cards.',
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'cards',
       title: 'Feature cards',
