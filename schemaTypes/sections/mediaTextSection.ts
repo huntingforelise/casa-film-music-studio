@@ -1,15 +1,12 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
 
 export const mediaTextSection = defineType({
   name: 'mediaTextSection',
   title: 'Media + Text Section',
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'content',
       title: 'Content',
@@ -43,25 +40,7 @@ export const mediaTextSection = defineType({
         layout: 'radio',
       },
       initialValue: 'right',
-      validation: (Rule) =>
-        Rule.required().custom((value, context) => {
-          const parent = context?.parent as {
-            mediaOrientation?: 'landscape' | 'portrait'
-            landscapeMediaSize?: 'small' | 'large'
-            portraitMediaSize?: 'small' | 'standard' | 'large'
-          } | undefined
-
-          const isSmallMedia =
-            parent?.mediaOrientation === 'landscape'
-              ? parent.landscapeMediaSize === 'small'
-              : parent?.portraitMediaSize === 'small'
-
-          if (value === 'left' && isSmallMedia) {
-            return 'Small media must be placed on the right.'
-          }
-
-          return true
-        }),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'mediaOrientation',
@@ -76,35 +55,6 @@ export const mediaTextSection = defineType({
         ],
       },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'landscapeMediaSize',
-      title: 'Landscape media size',
-      type: 'string',
-      hidden: ({parent}) => parent?.mediaOrientation !== 'landscape',
-      initialValue: 'large',
-      options: {
-        layout: 'radio',
-        list: [
-          {title: 'Large (default)', value: 'large'},
-          {title: 'Small', value: 'small'},
-        ],
-      },
-    }),
-    defineField({
-      name: 'portraitMediaSize',
-      title: 'Portrait media size',
-      type: 'string',
-      hidden: ({parent}) => parent?.mediaOrientation !== 'portrait',
-      initialValue: 'standard',
-      options: {
-        layout: 'radio',
-        list: [
-          {title: 'Standard (default)', value: 'standard'},
-          {title: 'Large', value: 'large'},
-          {title: 'Small (smallest)', value: 'small'},
-        ],
-      },
     }),
     defineField({
       name: 'image',
@@ -149,43 +99,38 @@ export const mediaTextSection = defineType({
   ],
   preview: {
     select: {
+      eyebrow: 'eyebrow',
       title: 'title',
+      intro: 'intro',
       mediaType: 'mediaType',
+      mediaPosition: 'mediaPosition',
       mediaOrientation: 'mediaOrientation',
-      landscapeMediaSize: 'landscapeMediaSize',
-      portraitMediaSize: 'portraitMediaSize',
     },
     prepare({
+      eyebrow,
       title,
+      intro,
       mediaType,
+      mediaPosition,
       mediaOrientation,
-      landscapeMediaSize,
-      portraitMediaSize,
     }: {
+      eyebrow?: string
       title?: string
+      intro?: string
       mediaType?: string
+      mediaPosition?: string
       mediaOrientation?: string
-      landscapeMediaSize?: string
-      portraitMediaSize?: string
     }) {
       const mediaLabel = mediaType === 'video' ? 'Video' : 'Photo'
       const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
-      let sizeLabel = ''
-
-      if (mediaOrientation === 'portrait') {
-        sizeLabel = `, ${
-          portraitMediaSize === 'small'
-            ? 'small'
-            : portraitMediaSize === 'standard'
-              ? 'standard'
-              : 'large'
-        }`
-      } else {
-        sizeLabel = landscapeMediaSize === 'small' ? ', small' : ', large'
-      }
+      const positionLabel = mediaPosition === 'left' ? 'left' : 'right'
+      const headerTitle = [eyebrow, title].filter(Boolean).join(' · ')
+      const introLabel = intro?.trim()
       return {
-        title: title ? `Media + Text Section · ${title}` : 'Media + Text Section',
-        subtitle: `${mediaLabel} (${orientationLabel}${sizeLabel})`,
+        title: headerTitle ? `Media + Text Section · ${headerTitle}` : 'Media + Text Section',
+        subtitle: [mediaLabel, orientationLabel, positionLabel, introLabel]
+          .filter(Boolean)
+          .join(' · '),
       }
     },
   },
