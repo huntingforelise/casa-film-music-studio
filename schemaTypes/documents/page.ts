@@ -46,6 +46,7 @@ export const page = defineType({
         {type: 'ctaSection'},
         {type: 'testimonialSection'},
         {type: 'featureCardSection'},
+        {type: 'processSection'},
         {type: 'logoStripSection'},
         {type: 'faqSection'},
         {type: 'photoMosaicSection'},

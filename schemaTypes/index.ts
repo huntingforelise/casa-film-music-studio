@@ -27,6 +27,7 @@ import {mediaRowSection} from './sections/mediaRowSection'
 import {videoShowcaseSection} from './sections/videoShowcaseSection'
 import {testimonialSection} from './sections/testimonialSection'
 import {featureCardSection} from './sections/featureCardSection'
+import {processSection} from './sections/processSection'
 import {logoStripSection} from './sections/logoStripSection'
 import {faqSection} from './sections/faqSection'
 import {blockContent} from './objects/blockContent'
@@ -62,6 +63,7 @@ export const schemaTypes = [
   videoShowcaseSection,
   testimonialSection,
   featureCardSection,
+  processSection,
   logoStripSection,
   faqSection,
   photoMosaicSection,
