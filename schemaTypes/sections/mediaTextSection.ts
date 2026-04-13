@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {sectionHeaderFields} from './sectionHeader'
+import {portableTextToPlainText, sectionHeaderFields} from './sectionHeader'
 
 export const mediaTextSection = defineType({
   name: 'mediaTextSection',
@@ -116,7 +116,7 @@ export const mediaTextSection = defineType({
     }: {
       eyebrow?: string
       title?: string
-      intro?: string
+      intro?: unknown
       mediaType?: string
       mediaPosition?: string
       mediaOrientation?: string
@@ -125,7 +125,7 @@ export const mediaTextSection = defineType({
       const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
       const positionLabel = mediaPosition === 'left' ? 'left' : 'right'
       const headerTitle = [eyebrow, title].filter(Boolean).join(' · ')
-      const introLabel = intro?.trim()
+      const introLabel = portableTextToPlainText(intro)
       return {
         title: headerTitle ? `Media + Text Section · ${headerTitle}` : 'Media + Text Section',
         subtitle: [mediaLabel, orientationLabel, positionLabel, introLabel]

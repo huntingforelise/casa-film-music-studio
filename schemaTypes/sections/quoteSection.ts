@@ -18,8 +18,36 @@ export const quoteSection = defineType({
     defineField({
       name: 'intro',
       title: 'Intro',
-      type: 'text',
-      rows: 3,
+      type: 'array',
+      description: 'Optional supporting copy. Links are allowed.',
+      of: [
+        {
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL',
+                    validation: (Rule) => Rule.uri({allowRelative: true}),
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     }),
     defineField({
       name: 'quote',
