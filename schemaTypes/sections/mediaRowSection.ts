@@ -8,6 +8,22 @@ export const mediaRowSection = defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'eyebrow',
+      title: 'Eyebrow',
+      type: 'string',
+    }),
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Intro',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
       name: 'mediaOrientation',
       title: 'Media orientation',
       type: 'string',

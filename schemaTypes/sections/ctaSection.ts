@@ -5,6 +5,9 @@ export const ctaSection = defineType({
   title: 'CTA Section',
   type: 'object',
   fields: [
+    {name: 'eyebrow', title: 'Eyebrow', type: 'string'},
+    {name: 'title', title: 'Title', type: 'string'},
+    {name: 'intro', title: 'Intro', type: 'text', rows: 3},
     {name: 'text', type: 'string'},
     {name: 'buttonLabel', type: 'string'},
     {name: 'buttonLink', type: 'string'},
