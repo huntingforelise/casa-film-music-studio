@@ -27,7 +27,7 @@ export const heroSection = defineType({
     },
     prepare({media}) {
       return {
-        title: 'Hero section',
+        title: 'Hero Section',
         subtitle: 'Fullscreen hero image',
         media,
       }

@@ -1,54 +1,13 @@
-import {defineField, defineType} from 'sanity'
+import {defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const textSection = defineType({
   name: 'textSection',
   title: 'Text Section',
   type: 'object',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'array',
-      description: 'Optional supporting copy. Links are allowed.',
-      of: [
-        {
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-          marks: {
-            decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                    validation: (Rule) => Rule.uri({allowRelative: true}),
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    }),
+    ...sectionHeaderFields,
     {
       name: 'content',
       type: 'array',
@@ -56,4 +15,18 @@ export const textSection = defineType({
       validation: (Rule) => Rule.required().min(1),
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      content: 'content',
+    },
+    prepare({title, content}: {title?: string; content?: unknown[]}) {
+      const contentCount = Array.isArray(content) ? content.length : 0
+
+      return {
+        title: sectionPreviewTitle('Text Section', title),
+        subtitle: `${contentCount} block${contentCount === 1 ? '' : 's'}`,
+      }
+    },
+  },
 })

@@ -1,54 +1,13 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const twoColumnTextSection = defineType({
   name: 'twoColumnTextSection',
   title: 'Two Column Text Section',
   type: 'object',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'array',
-      description: 'Optional supporting copy. Links are allowed.',
-      of: [
-        {
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-          marks: {
-            decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                    validation: (Rule) => Rule.uri({allowRelative: true}),
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'backgroundImage',
       title: 'Background image',
@@ -83,11 +42,12 @@ export const twoColumnTextSection = defineType({
   ],
   preview: {
     select: {
+      title: 'title',
       backgroundImage: 'backgroundImage',
     },
-    prepare({backgroundImage}) {
+    prepare({title, backgroundImage}) {
       return {
-        title: 'Two Column Text Section',
+        title: sectionPreviewTitle('Two Column Text Section', title),
         subtitle: backgroundImage
           ? 'Two rich text columns with a background image'
           : 'Two rich text columns that stack on mobile',

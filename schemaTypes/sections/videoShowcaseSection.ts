@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 const SUPPORTING_VIDEO_COUNTS = {
   landscape: 2,
@@ -68,7 +69,7 @@ export const videoShowcaseSection = defineType({
       const total = 1 + count
 
       return {
-        title: title ? `Video Showcase · ${title}` : 'Video Showcase',
+        title: sectionPreviewTitle('Video Showcase', title),
         subtitle: `${total} videos (${orientationLabel})`,
       }
     },

@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {portableTextToPlainText} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const ctaSection = defineType({
   name: 'ctaSection',
@@ -128,45 +129,18 @@ export const ctaSection = defineType({
   preview: {
     select: {
       variant: 'variant',
-      text: 'text',
-      eyebrow: 'eyebrow',
       title: 'title',
-      buttonLabel: 'buttonLabel',
     },
     prepare({
       variant,
-      text,
-      eyebrow,
       title,
-      buttonLabel,
     }: {
       variant?: string
-      text?: string
-      eyebrow?: string
       title?: string
-      buttonLabel?: string
     }) {
-      const headerPreview = [eyebrow, title].filter(Boolean).join(' · ')
-      const questionPreview = text?.trim() || ''
-      const parts: string[] = []
-
-      parts.push(variant === 'inline' ? 'Inline CTA' : 'Featured CTA')
-
-      if (variant === 'inline' && questionPreview) {
-        parts.push(`Question: ${questionPreview}`)
-      }
-
-      if (variant === 'featured' && headerPreview) {
-        parts.push(`Header: ${headerPreview}`)
-      }
-
-      if (buttonLabel) {
-        parts.push(`Button: ${buttonLabel}`)
-      }
-
       return {
-        title: 'CTA Section',
-        subtitle: parts.length ? parts.join(' | ') : 'No call to action yet',
+        title: sectionPreviewTitle('CTA Section', variant === 'featured' ? title : undefined),
+        subtitle: variant === 'inline' ? 'Inline' : 'Featured',
       }
     },
   },

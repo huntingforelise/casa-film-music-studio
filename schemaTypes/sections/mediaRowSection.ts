@@ -1,4 +1,6 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const mediaRowSection = defineType({
   name: 'mediaRowSection',
@@ -7,50 +9,7 @@ export const mediaRowSection = defineType({
     'Render one media type at a time (photos or videos) with a single orientation. Rows show up to four cards before wrapping and stay responsive at smaller breakpoints.',
   type: 'object',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'array',
-      description: 'Optional supporting copy. Links are allowed.',
-      of: [
-        {
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-          marks: {
-            decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                    validation: (Rule) => Rule.uri({allowRelative: true}),
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'mediaOrientation',
       title: 'Media orientation',
@@ -141,7 +100,7 @@ export const mediaRowSection = defineType({
       const orientationLabel = mediaOrientation === 'landscape' ? 'landscape' : 'portrait'
 
       return {
-        title: 'Media Row Section',
+        title: sectionPreviewTitle('Media Row Section'),
         subtitle: `${count} ${mediaType === 'video' ? 'videos' : 'photos'} (${orientationLabel})`,
       }
     },

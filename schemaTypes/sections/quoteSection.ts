@@ -1,54 +1,13 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const quoteSection = defineType({
   name: 'quoteSection',
   title: 'Quote Section',
   type: 'object',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'array',
-      description: 'Optional supporting copy. Links are allowed.',
-      of: [
-        {
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-          marks: {
-            decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                    validation: (Rule) => Rule.uri({allowRelative: true}),
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'quote',
       title: 'Quote',
@@ -74,28 +33,12 @@ export const quoteSection = defineType({
   ],
   preview: {
     select: {
-      quote: 'quote',
-      author: 'author',
-      year: 'year',
+      title: 'title',
     },
-    prepare({
-      quote,
-      author,
-      year,
-    }: {
-      quote?: string
-      author?: string
-      year?: number
-    }) {
-      const trimmedQuote = quote?.trim() || ''
-      const quotePreview = trimmedQuote
-        ? `"${trimmedQuote.slice(0, 40)}${trimmedQuote.length > 40 ? '...' : ''}"`
-        : ''
-      const attribution = [author, year].filter(Boolean).join(', ')
-
+    prepare({title}: {title?: string}) {
       return {
-        title: 'Quote Section',
-        subtitle: [quotePreview, attribution].filter(Boolean).join(' · '),
+        title: sectionPreviewTitle('Quote Section', title),
+        subtitle: 'Quote with attribution',
       }
     },
   },

@@ -1,4 +1,6 @@
 import {defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 const SLOT_KEYS = [
   'slotA',
@@ -23,50 +25,7 @@ export const photoMosaicSection = defineType({
   description: 'Use exactly 3, 6, or 9 photos.',
   type: 'object',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro',
-      type: 'array',
-      description: 'Optional supporting copy. Links are allowed.',
-      of: [
-        {
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-          marks: {
-            decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-            ],
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'URL',
-                    validation: (Rule) => Rule.uri({allowRelative: true}),
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'slotA',
       title: 'Slot A — Large Landscape',
@@ -155,7 +114,7 @@ export const photoMosaicSection = defineType({
         count >= 9 ? '9 images' : count >= 6 ? '6 images' : count >= 3 ? '3 images' : '0 images'
 
       return {
-        title: (selection.title as string | undefined) || 'Photo Mosaic Section',
+        title: sectionPreviewTitle('Photo Mosaic Section', selection.title as string | undefined),
         subtitle: layoutLabel,
       }
     },

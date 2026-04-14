@@ -1,4 +1,5 @@
 import {defineType, defineField} from 'sanity'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const splitHeroSection = defineType({
   name: 'splitHeroSection',
@@ -101,15 +102,12 @@ export const splitHeroSection = defineType({
   ],
   preview: {
     select: {
-      title: 'introLine',
       media: 'optionOne.image',
-      optionOne: 'optionOne.title',
-      optionTwo: 'optionTwo.title',
     },
-    prepare({title, media, optionOne, optionTwo}) {
+    prepare({media}) {
       return {
-        title: title || 'Split Hero',
-        subtitle: `${optionOne || 'Professional'} / ${optionTwo || 'Private'}`,
+        title: sectionPreviewTitle('Split Hero Section'),
+        subtitle: '2 options',
         media,
       }
     },

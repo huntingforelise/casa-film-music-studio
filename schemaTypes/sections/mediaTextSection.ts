@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
-import {portableTextToPlainText, sectionHeaderFields} from './sectionHeader'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const mediaTextSection = defineType({
   name: 'mediaTextSection',
@@ -99,24 +100,18 @@ export const mediaTextSection = defineType({
   ],
   preview: {
     select: {
-      eyebrow: 'eyebrow',
       title: 'title',
-      intro: 'intro',
       mediaType: 'mediaType',
       mediaPosition: 'mediaPosition',
       mediaOrientation: 'mediaOrientation',
     },
     prepare({
-      eyebrow,
       title,
-      intro,
       mediaType,
       mediaPosition,
       mediaOrientation,
     }: {
-      eyebrow?: string
       title?: string
-      intro?: unknown
       mediaType?: string
       mediaPosition?: string
       mediaOrientation?: string
@@ -124,13 +119,9 @@ export const mediaTextSection = defineType({
       const mediaLabel = mediaType === 'video' ? 'Video' : 'Photo'
       const orientationLabel = mediaOrientation === 'portrait' ? 'portrait' : 'landscape'
       const positionLabel = mediaPosition === 'left' ? 'left' : 'right'
-      const headerTitle = [eyebrow, title].filter(Boolean).join(' · ')
-      const introLabel = portableTextToPlainText(intro)
       return {
-        title: headerTitle ? `Media + Text Section · ${headerTitle}` : 'Media + Text Section',
-        subtitle: [mediaLabel, orientationLabel, positionLabel, introLabel]
-          .filter(Boolean)
-          .join(' · '),
+        title: sectionPreviewTitle('Media + Text Section', title),
+        subtitle: [mediaLabel, orientationLabel, positionLabel].filter(Boolean).join(' · '),
       }
     },
   },

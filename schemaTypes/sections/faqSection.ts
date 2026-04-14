@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
-import {portableTextToPlainText, sectionHeaderFields} from './sectionHeader'
+import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const faqSection = defineType({
   name: 'faqSection',
@@ -35,29 +36,15 @@ export const faqSection = defineType({
   preview: {
     select: {
       title: 'title',
-      intro: 'intro',
       items: 'items',
       backgroundImage: 'backgroundImage',
     },
-    prepare({
-      title,
-      intro,
-      items,
-      backgroundImage,
-    }: {
-      title?: string
-      intro?: unknown
-      items?: unknown[]
-      backgroundImage?: any
-    }) {
+    prepare({title, items, backgroundImage}: {title?: string; items?: unknown[]; backgroundImage?: any}) {
       const count = Array.isArray(items) ? items.length : 0
-      const subtitle =
-        portableTextToPlainText(intro) ||
-        (count ? `${count} question${count === 1 ? '' : 's'}` : 'No questions yet')
 
       return {
-        title: title || 'FAQ Section',
-        subtitle: backgroundImage ? `${subtitle} with background image` : subtitle,
+        title: sectionPreviewTitle('FAQ Section', title),
+        subtitle: `${count} question${count === 1 ? '' : 's'}`,
         media: backgroundImage || undefined,
       }
     },

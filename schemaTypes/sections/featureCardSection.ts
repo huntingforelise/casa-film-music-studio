@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {sectionHeaderFields} from './sectionHeader'
+import {sectionPreviewTitle} from './sectionPreview'
 
 export const featureCardSection = defineType({
   name: 'featureCardSection',
@@ -46,7 +47,7 @@ export const featureCardSection = defineType({
       const count = Array.isArray(cards) ? cards.length : 0
 
       return {
-        title: title || 'Feature Card Section',
+        title: sectionPreviewTitle('Feature Card Section', title),
         subtitle: `${count} card${count === 1 ? '' : 's'}`,
       }
     },
