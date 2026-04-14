@@ -11,6 +11,13 @@ export const page = defineType({
     }),
 
     defineField({
+      name: 'subtitle',
+      type: 'string',
+      description: 'Short supporting line shown in the hero for this page.',
+      validation: (Rule) => Rule.required().min(1),
+    }),
+
+    defineField({
       name: 'slug',
       type: 'slug',
       options: {source: 'title'},
