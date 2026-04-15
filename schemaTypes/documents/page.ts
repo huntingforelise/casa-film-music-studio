@@ -14,7 +14,18 @@ export const page = defineType({
       name: 'subtitle',
       type: 'string',
       description: 'Short supporting line shown in the hero for this page.',
-      validation: (Rule) => Rule.required().min(1),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const template = (context?.document as {template?: string} | undefined)?.template
+
+          if (template === 'compactHero') {
+            return true
+          }
+
+          return typeof value === 'string' && value.trim().length > 0
+            ? true
+            : 'Add a subtitle for standard and full screen hero pages.'
+        }),
     }),
 
     defineField({
