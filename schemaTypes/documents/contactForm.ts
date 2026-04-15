@@ -1,27 +1,12 @@
 import {defineType, defineField} from 'sanity'
+import {sectionHeaderFields} from '../sections/sectionHeader'
 
 export const contactForm = defineType({
   name: 'contactForm',
   title: 'Contact Form',
   type: 'document',
   fields: [
-    defineField({
-      name: 'eyebrow',
-      title: 'Eyebrow',
-      type: 'string',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro copy',
-      type: 'text',
-      rows: 3,
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'nameLabel',
       title: 'Name label',

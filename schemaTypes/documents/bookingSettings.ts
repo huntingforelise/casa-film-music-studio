@@ -1,22 +1,12 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {sectionHeaderFields} from '../sections/sectionHeader'
 
 export const bookingSettings = defineType({
   name: 'bookingSettings',
   title: 'Booking Settings',
   type: 'document',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'intro',
-      title: 'Intro copy',
-      type: 'text',
-      rows: 3,
-    }),
+    ...sectionHeaderFields,
     defineField({
       name: 'disclaimer',
       title: 'Disclaimer note',
@@ -289,6 +279,12 @@ export const bookingSettings = defineType({
           type: 'string',
         }),
         defineField({
+          name: 'servicesIntro',
+          title: 'Services intro',
+          type: 'text',
+          rows: 3,
+        }),
+        defineField({
           name: 'bundleIntro',
           title: 'Bundle intro',
           type: 'text',
@@ -301,17 +297,12 @@ export const bookingSettings = defineType({
         }),
         defineField({
           name: 'bundleSelectLabel',
-          title: 'Bundle select label',
+          title: 'Package select label',
           type: 'string',
         }),
         defineField({
           name: 'bundleSelectedLabel',
-          title: 'Bundle selected label',
-          type: 'string',
-        }),
-        defineField({
-          name: 'bundleAddMissingLabel',
-          title: 'Bundle add missing label',
+          title: 'Package selected label',
           type: 'string',
         }),
         defineField({
@@ -333,6 +324,18 @@ export const bookingSettings = defineType({
           name: 'bundleRegularPricePrefix',
           title: 'Bundle fallback price prefix',
           type: 'string',
+        }),
+        defineField({
+          name: 'eventDetailsIntro',
+          title: 'Event details intro',
+          type: 'text',
+          rows: 3,
+        }),
+        defineField({
+          name: 'addOnsIntro',
+          title: 'Add-ons intro',
+          type: 'text',
+          rows: 3,
         }),
         defineField({
           name: 'addOnsEmptyText',
