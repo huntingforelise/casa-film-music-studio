@@ -259,16 +259,6 @@ export const bookingSettings = defineType({
           type: 'string',
         }),
         defineField({
-          name: 'startTimeLabel',
-          title: 'Start time label',
-          type: 'string',
-        }),
-        defineField({
-          name: 'durationLabel',
-          title: 'Duration label',
-          type: 'string',
-        }),
-        defineField({
           name: 'guestCountLabel',
           title: 'Estimated guests label',
           type: 'string',
@@ -384,16 +374,6 @@ export const bookingSettings = defineType({
         defineField({
           name: 'summaryLabelDate',
           title: 'Summary label (date)',
-          type: 'string',
-        }),
-        defineField({
-          name: 'summaryLabelTime',
-          title: 'Summary label (time)',
-          type: 'string',
-        }),
-        defineField({
-          name: 'summaryLabelDuration',
-          title: 'Summary label (duration)',
           type: 'string',
         }),
         defineField({
