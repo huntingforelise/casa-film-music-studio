@@ -6,10 +6,21 @@ export const contactForm = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'eyebrow',
+      title: 'Eyebrow',
+      type: 'string',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Intro copy',
+      type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'nameLabel',

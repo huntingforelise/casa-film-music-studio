@@ -6,17 +6,16 @@ export const bookingSettings = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'introTitle',
-      title: 'Intro title',
+      name: 'title',
+      title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'introText',
-      title: 'Intro text',
+      name: 'intro',
+      title: 'Intro copy',
       type: 'text',
       rows: 3,
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'disclaimer',
