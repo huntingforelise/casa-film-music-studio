@@ -18,6 +18,13 @@ export const featureCardSection = defineType({
       validation: (Rule) => Rule.required().min(2).max(12),
     }),
     defineField({
+      name: 'calloutEyebrow',
+      title: 'Callout eyebrow',
+      type: 'string',
+      initialValue: 'Included in every booking',
+      description: 'Optional label above the callout title.',
+    }),
+    defineField({
       name: 'calloutTitle',
       title: 'Callout title',
       type: 'string',
