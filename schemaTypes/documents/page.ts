@@ -9,31 +9,11 @@ export const page = defineType({
       name: 'title',
       type: 'string',
     }),
-
-    defineField({
-      name: 'subtitle',
-      type: 'string',
-      description: 'Short supporting line shown in the hero for this page.',
-      validation: (Rule) =>
-        Rule.custom((value, context) => {
-          const template = (context?.document as {template?: string} | undefined)?.template
-
-          if (template === 'compactHero') {
-            return true
-          }
-
-          return typeof value === 'string' && value.trim().length > 0
-            ? true
-            : 'Add a subtitle for standard and full screen hero pages.'
-        }),
-    }),
-
     defineField({
       name: 'slug',
       type: 'slug',
       options: {source: 'title'},
     }),
-
     defineField({
       name: 'template',
       title: 'Template',
@@ -49,7 +29,25 @@ export const page = defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'subtitle',
+      type: 'string',
+      description: 'Short supporting line shown in the hero for this page.',
+      hidden: ({document}) =>
+        (document as {template?: string} | undefined)?.template === 'compactHero',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const template = (context?.document as {template?: string} | undefined)?.template
 
+          if (template === 'compactHero') {
+            return true
+          }
+
+          return typeof value === 'string' && value.trim().length > 0
+            ? true
+            : 'Add a subtitle for standard and full screen hero pages.'
+        }),
+    }),
     defineField({
       name: 'sections',
       type: 'array',
@@ -73,13 +71,12 @@ export const page = defineType({
         Rule.custom((sections, context) => {
           const template = (context?.document as {template?: string} | undefined)?.template
           const heroCount = Array.isArray(sections)
-            ? sections.filter((section) => (section as {_type?: string})?._type === 'heroSection').length
+            ? sections.filter((section) => (section as {_type?: string})?._type === 'heroSection')
+                .length
             : 0
 
           if (template === 'compactHero') {
-            return heroCount === 0
-              ? true
-              : 'Compact hero pages cannot include a Hero section.'
+            return heroCount === 0 ? true : 'Compact hero pages cannot include a Hero section.'
           }
 
           if (template === 'standardHero' || template === 'fullScreenHero') {
