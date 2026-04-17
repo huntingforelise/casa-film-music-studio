@@ -7,14 +7,6 @@ export const splitHeroSection = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'introLine',
-      title: 'Intro line',
-      type: 'string',
-      description: 'Optional. Keep it short and direct, like a route into the page.',
-      validation: (Rule) => Rule.required(),
-    }),
-
-    defineField({
       name: 'optionOne',
       title: 'Option One',
       type: 'object',
